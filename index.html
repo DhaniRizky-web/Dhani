@@ -1,2 +1,229 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portfolio — Nama Anda</title><style>:root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--glass:rgba(255,255,255,0.04)}*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071229 0%,var(--bg) 100%);color:#e6eef6;-webkit-font-smoothing:antialiased}header{position:fixed;left:0;right:0;top:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(6px);z-index:30}nav a{color:var(--muted);text-decoration:none;margin:0 10px;padding:8px 12px;border-radius:10px;font-weight:600}nav a.active{color:#021024;background:linear-gradient(90deg,rgba(6,182,212,0.12),rgba(6,182,212,0.06));box-shadow:0 6px 18px rgba(6,182,212,0.06)}.brand{font-weight:800;color:var(--accent)}main{padding:110px 20px 40px;max-width:1000px;margin:0 auto}section.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),var(--card));border-radius:16px;padding:24px;margin-bottom:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}.hero{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.avatar{width:120px;height:120px;border-radius:16px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;color:#021024;box-shadow:0 10px 30px rgba(2,6,23,0.6)}h1{margin:0 0 6px}p.lead{color:var(--muted);margin:0 0 8px}ul.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;list-style:none;padding:0;margin:12px 0 0}ul.projects li{padding:12px;border-radius:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)}footer{opacity:0.7;text-align:center;margin-top:12px;color:var(--muted)}button.cta{background:var(--accent);border:0;padding:10px 14px;border-radius:10px;color:#021024;font-weight:700;cursor:pointer}@media(max-width:520px){.hero{flex-direction:column;align-items:flex-start}.avatar{width:96px;height:96px}}</style></head><body><header><div class="brand">Portfolio<span style="opacity:.7">• Anda</span></div><nav id="nav"><a href="#/home" data-route="home">Home</a><a href="#/about" data-route="about">About</a><a href="#/projects" data-route="projects">Projects</a><a href="#/contact" data-route="contact">Contact</a></nav></header><main id="app"></main><template id="tpl-home"><section class="card hero"><div class="avatar">AA</div><div><h1>Nama Anda</h1><p class="lead">Saya pembuat produk digital — desainer & developer. Saya membuat aplikasi web, UI/UX, dan solusi yang berguna.</p><div style="margin-top:12px"><a class="cta" href="#/projects">Lihat Projects</a></div></div></section></template><template id="tpl-about"><section class="card"><h2>Tentang Saya</h2><p class="lead">Ringkasan singkat tentang latar belakang, keterampilan, dan pengalaman Anda. Contoh: Frontend developer dengan pengalaman 3+ tahun, mahir HTML/CSS/JS dan React.</p><h3>Keterampilan</h3><ul><li>HTML / CSS / JS</li><li>React / SPA</li><li>UI/UX & Design Systems</li><li>Git & Deployment</li></ul></section></template><template id="tpl-projects"><section class="card"><h2>Projects</h2><p class="lead">Proyek-proyek pilihan saya — klik untuk detail.</p><ul class="projects" id="projects-list"></ul></section></template><template id="tpl-contact"><section class="card"><h2>Contact</h2><p class="lead">Sampaikan pesan Anda melalui formulir sederhana ini.</p><form id="contact-form"><div style="display:flex;gap:8px;flex-wrap:wrap"><input name="name" placeholder="Nama" required style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"><input name="email" placeholder="Email" required style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></div><textarea name="message" placeholder="Pesan" required style="width:100%;margin-top:8px;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea><div style="margin-top:10px"><button class="cta" type="submit">Kirim</button></div></form></section></template><script>(()=>{const routes={home:document.getElementById('tpl-home').innerHTML,about:document.getElementById('tpl-about').innerHTML,projects:document.getElementById('tpl-projects').innerHTML,contact:document.getElementById('tpl-contact').innerHTML};const app=document.getElementById('app');const nav=document.getElementById('nav');function setActive(r){Array.from(nav.querySelectorAll('a')).forEach(a=>a.classList.toggle('active',a.getAttribute('data-route')===r))}function render(route){if(!routes[route])route='home';app.innerHTML=routes[route];setActive(route);if(route==='projects')loadProjects();if(route==='contact')attachForm()}window.addEventListener('hashchange',()=>render(location.hash.replace('#/','')));function loadProjects(){const list=document.getElementById('projects-list');const demo=[{title:'Website Toko',desc:'E-commerce sederhana dengan pembayaran',link:'#'},{title:'Dashboard Admin',desc:'Analytics & management panel',link:'#'},{title:'Aplikasi ToDo',desc:'SPA produktivitas',link:'#'}];list.innerHTML=demo.map(p=><li><strong>${p.title}</strong><p style="margin:6px 0;color:var(--muted)">${p.desc}</p><a href="${p.link}">Lihat</a></li>).join('')}function attachForm(){const f=document.getElementById('contact-form');f.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(f);alert('Terima kasih, '+d.get('name')+"! Pesan Anda telah diterima (demo).")})}render(location.hash.replace('#/','')||'home');})();</script></body></html>
+<!doctype html>
 
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Single Page App</title>
+  <meta name="description" content="Portfolio SPA — Nama Anda. Projects, About, Contact." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6ee7b7; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --maxw:1100px;
+      --ff:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--ff);background:linear-gradient(180deg,#081024 0%, #071427 100%);color:#e6eef6}
+    a{color:inherit;text-decoration:none}
+    .app{max-width:var(--maxw);margin:30px auto;padding:24px}/* header */
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#60a5fa);display:grid;place-items:center;font-weight:700;color:#052426}
+nav{display:flex;gap:14px}
+nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
+nav a[data-active="true"]{background:var(--glass);color:var(--accent);box-shadow:0 6px 20px rgba(6,11,20,0.6)}
+.cta{padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#60a5fa);color:#042026;font-weight:700}
+
+/* layout */
+.main{display:grid;grid-template-columns:1fr;gap:20px;margin-top:26px}
+.hero{display:flex;flex-direction:column;gap:12px;padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter: blur(6px)}
+.hero .title{font-size:clamp(20px,4.5vw,36px);line-height:1.05}
+.hero .subtitle{color:var(--muted);max-width:70ch}
+.controls{display:flex;gap:10px;margin-top:8px}
+.btn{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;font-weight:600}
+
+/* sections */
+section{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);box-shadow:0 8px 40px rgba(2,6,23,0.6)}
+.grid{display:grid;gap:16px}
+.projects-grid{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));display:grid}
+.card{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.02)}
+.muted{color:var(--muted)}
+
+/* project card */
+.project-title{font-weight:700;margin-top:8px}
+.project-desc{margin-top:8px;color:var(--muted);font-size:14px}
+
+/* contact */
+form{display:grid;gap:10px}
+input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+.row{display:flex;gap:8px}
+
+/* footer */
+footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+
+/* small screens */
+@media(min-width:900px){
+  .main{grid-template-columns:2fr 1fr}
+  .hero{min-height:180px}
+}
+
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header>
+      <div class="brand">
+        <div class="logo">RR</div>
+        <div>
+          <div style="font-weight:800">Nama Anda</div>
+          <div class="muted" style="font-size:12px">Frontend Developer • Designer</div>
+        </div>
+      </div><nav id="nav">
+    <a href="#/home" data-route="home">Home</a>
+    <a href="#/about" data-route="about">About</a>
+    <a href="#/projects" data-route="projects">Projects</a>
+    <a href="#/contact" data-route="contact">Contact</a>
+  </nav>
+
+  <div>
+    <a class="cta" href="#/contact">Hire Me</a>
+  </div>
+</header>
+
+<main class="main">
+  <!-- left column (content) -->
+  <div id="view-root">
+    <!-- SPA content will be rendered here by JS -->
+  </div>
+
+  <!-- right column (sidebar summary) -->
+  <aside style="display:block">
+    <section>
+      <h3>Quick info</h3>
+      <p class="muted">Lokasi: Jakarta • Email: nama@email.com</p>
+      <hr style="border:0;border-top:1px solid rgba(255,255,255,0.03)" />
+      <h4>Skills</h4>
+      <p class="muted">HTML • CSS • JavaScript • React • UI/UX</p>
+    </section>
+
+    <section style="margin-top:12px">
+      <h4>Recent</h4>
+      <div class="card">
+        <div style="font-weight:700">Aplikasi Tasker</div>
+        <div class="muted">Single-page ToDo dengan offline support</div>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<footer>
+  <div>© <span id="year"></span> Nama Anda — Built as SPA with plain HTML/CSS/JS</div>
+</footer>
+
+  </div>  <script>
+    // Basic client-side router + small templating
+    const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+
+    const routes = {
+      home: () => `
+        <section class="hero">
+          <div class="title">Halo — saya <span style="color:var(--accent)">Nama Anda</span></div>
+          <div class="subtitle">Saya membuat antarmuka modern, cepat, dan ramah pengguna. Lihat beberapa proyek saya di bawah atau hubungi saya untuk bekerja sama.</div>
+          <div class="controls">
+            <a class="btn" href="#/projects">Lihat Proyek</a>
+            <a class="btn" href="#/contact">Kontak</a>
+          </div>
+        </section>
+
+        <section style="margin-top:12px">
+          <h3>Highlights</h3>
+          <div class="grid">
+            <div class="card">Fast performance<br/><div class="muted">Optimized JS + minimal rendering</div></div>
+            <div class="card">Responsive design<br/><div class="muted">Works on desktop & mobile</div></div>
+            <div class="card">Accessible<br/><div class="muted">Keyboard-friendly & semantic</div></div>
+          </div>
+        </section>
+      `,
+
+      about: () => `
+        <section>
+          <h2>About Me</h2>
+          <p class="muted">Saya seorang Frontend Developer yang fokus pada pembuatan antarmuka yang bersih, accessible, dan cepat. Saya menyukai desain pixel-perfect dan pengalaman pengguna yang halus.</p>
+          <h3>Experience</h3>
+          <div class="card">3+ tahun bekerja pada tim produk, membangun fitur dan memimpin pengembangan UI.</div>
+        </section>
+      `,
+
+      projects: () => `
+        <section>
+          <h2>Projects</h2>
+          <div class="projects-grid">
+            ${projectCard('Tasker App','To-do SPA dengan offline support','https://example.com')}
+            ${projectCard('Portfolio SPA','Template website portofolio single-file','https://example.com')}
+            ${projectCard('Weather UX','Aplikasi cuaca dengan animasi halus','https://example.com')}
+          </div>
+        </section>
+      `,
+
+      contact: () => `
+        <section>
+          <h2>Contact</h2>
+          <p class="muted">Isi form di bawah atau kirim email langsung ke <strong>nama@email.com</strong></p>
+          <form id="contact-form">
+            <input name="name" placeholder="Nama" required />
+            <input name="email" placeholder="Email" required />
+            <textarea name="message" placeholder="Pesan" rows="5" required></textarea><div style="display:flex;gap:8px;justify-content:flex-end">
+          <button type="submit" class="btn">Kirim</button>
+        </div>
+      </form>
+    </section>
+  `
+};
+
+function projectCard(title,desc,link){
+  return `
+    <div class="card">
+      <div style="font-weight:700">${title}</div>
+      <div class="project-desc">${desc}</div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <a class="btn" href="${link}" target="_blank">Preview</a>
+        <button class="btn" onclick="openDemo('${encodeURIComponent(title)}')">Demo</button>
+      </div>
+    </div>
+  `
+}
+
+function render(route){
+  const root = document.getElementById('view-root');
+  const content = routes[route] ? routes[route]() : `<section><h2>Not Found</h2><p class=\"muted\">Halaman tidak ditemukan.</p></section>`;
+  root.innerHTML = content;
+
+  // after render hooks
+  const navLinks = document.querySelectorAll('#nav [data-route]');
+  navLinks.forEach(a => a.setAttribute('data-active', a.getAttribute('data-route')===route));
+
+  const form = document.getElementById('contact-form');
+  if(form){
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      // simple demo: open mailto
+      const subject = encodeURIComponent('Pesan dari portfolio: '+fd.get('name'));
+      const body = encodeURIComponent('Email: '+fd.get('email')+"\n\n"+fd.get('message'));
+      window.location.href = `mailto:nama@email.com?subject=${subject}&body=${body}`;
+    })
+  }
+}
+
+function openDemo(title){
+  alert('Demo cepat: '+decodeURIComponent(title)+"\n(Anda bisa link-kan ke hosted demo atau code sandbox)");
+}
+
+// router handling
+function parseLocation(){
+  const hash = location.hash || '#/home';
+  const route = hash.replace(/^#\//,'').split('/')[0] || 'home';
+  return route;
+}
+
+window.addEventListener('hashchange', ()=> render(parseLocation()));
+window.addEventListener('load', ()=> render(parseLocation()));
+
+// keyboard shortcut: press "p" to goto projects
+window.addEventListener('keydown',(e)=>{
+  if(e.key.toLowerCase()==='p') location.hash = '#/projects';
+})
+
+  </script>
+</body>
+</html>
